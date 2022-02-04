@@ -8,35 +8,22 @@
 import SwiftUI
 
 struct ContactInfo: View {
-    let persons: [Person]
+    let choosenPerson: [Person]
     
     var body: some View {
-        List(persons) {person in 
-            Section {
-                HStack {
-                    Image(systemName: "person.fill")
-                    .resizable()
-                    .frame(width: 150, height: 150, alignment: .center)
-                }
-                HStack {
-                    Image(systemName: "phone")
-                        .foregroundColor(.blue)
-                    Text(person.phoneNumber)
-                }
-                HStack {
-                    Image(systemName: "tray")
-                        .foregroundColor(.blue)
-                    Text(person.email)
-            }
+        List(choosenPerson) { person in
+            Image(systemName: "person.fill")
+                .resizable()
+                .frame(width: 200, height: 200)
+            ContactsRows(person: person)
         }
-        }
-        .listStyle(.plain)
-        .navigationTitle(persons[0].fullName)
+        .listStyle(.grouped)
+        .navigationTitle(choosenPerson[0].fullName)
     }
 }
 
 struct ContactInfo_Previews: PreviewProvider {
     static var previews: some View {
-        ContactInfo(persons: [Person.getContactList()[0]])
+        ContactInfo(choosenPerson: [Person.getContactList()[0]])
     }
 }

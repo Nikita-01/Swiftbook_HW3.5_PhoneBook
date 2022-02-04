@@ -14,22 +14,13 @@ struct ContactListFull: View {
         NavigationView {
             List(persons) { person in
                 Section{
-                    HStack {
-                        Image(systemName: "phone")
-                            .foregroundColor(.blue)
-                        Text(person.phoneNumber)
-                    }
-                    HStack {
-                        Image(systemName: "tray")
-                            .foregroundColor(.blue)
-                        Text(person.email)
-                    }
+                    ContactsRows(person: person)
                 } header: {
                     Text(person.fullName)
                 }
             }
             .listStyle(.insetGrouped)
-        .navigationBarTitle("Contact List")
+            .navigationBarTitle("Contact List")
         }
     }
 }
